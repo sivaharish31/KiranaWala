@@ -17,7 +17,7 @@ const authenticateToken = (req, res, next) => {
   }
 
   const token = authHeader.split(" ")[1];
-  const secret = process.env.JWT_SECRET || "your_jwt_secret";
+  const secret = process.env.JWT_SECRET;
 
   jwt.verify(token, secret, (err, decoded) => {
     if (err) {

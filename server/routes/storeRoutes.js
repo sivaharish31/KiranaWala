@@ -122,8 +122,8 @@ router.post("/login", async (req, res) => {
       return res.status(404).json({ message: "Store not found" });
     }
 
-    // Create token with role and fallback secret
-    const secret = process.env.JWT_SECRET || "your_jwt_secret";
+    // Create token with configured secret
+    const secret = process.env.JWT_SECRET;
     const token = jwt.sign(
       { id: user._id, userId: user._id, role: user.role, email: user.email },
       secret,
