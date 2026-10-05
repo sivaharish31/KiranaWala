@@ -8,6 +8,15 @@ require("dotenv").config({
   path: path.resolve(__dirname, ".env"),
 });
 
+// Fail-fast: JWT_SECRET is required for secure authentication
+if (!process.env.JWT_SECRET) {
+  console.error(
+    "FATAL: JWT_SECRET environment variable is required. " +
+    "Set it in your .env file or environment before starting the server."
+  );
+  process.exit(1);
+}
+
 const customerRoutes = require("./routes/customerRoutes");
 const storeRoutes = require("./routes/storeRoutes");
 const aiRoutes = require("./routes/aiRoutes");
